@@ -1,0 +1,38 @@
+name: Java CI with Gradle
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  release:
+    types: [created]
+  schedule:
+    - cron: "0 0 * * 0"
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: ['8', '11']
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK ${{matrix.Java}}
+      uses: actions/setup-java@v2
+      with:
+        java-version: ${{matrix.Java}}
+        distribution: 'adopt'
+
+    - name: Setup CI Workspace with Gradle
+      run: | # We use an older version of Gradle. Since we have a binary already here, ensure it's an executable and use it.
+        chmod +x gradlew
+        ./gradlew setupCiWorkspace
+
+    - name: Build with Gradle
+      run: ./gradlew build
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.2.4
