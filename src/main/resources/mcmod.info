@@ -1,0 +1,16 @@
+[
+{
+  "modid": "pitpandamod",
+  "name": "Pit Panda Mod",
+  "description": "Pit Panda, an advanced Hypixel Pit stats grabber integration with Forge",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["ItzSwirlz"],
+  "credits": "mcbobby123, Pit Panda Developer",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
